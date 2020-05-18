@@ -2,9 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-//antDesign-vue
-import Antd from "ant-design-vue";
-import "ant-design-vue/dist/antd.css";
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 //集成iconfont图标
 import "@/icons/iconfonts/iconfont.css";
 //全局scss
@@ -18,7 +18,7 @@ import "./util/axios.js";
 
 Vue.config.productionTip = false;
 
-Vue.use(Antd);
+Vue.use(ElementUI);
 Vue.use({
   //size: Cookies.get('size') || 'medium', // set element-ui default size
   i18n: (key, value) => i18n.t(key, value)
