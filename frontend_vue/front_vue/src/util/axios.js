@@ -10,7 +10,6 @@ axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8"; 
 //添加请求拦截器
 axios.interceptors.request.use(
   config => {
-    showFullScreenLoading();
     //在发送请求之前做某件事
     if (
       config.method === "post" &&
@@ -35,8 +34,6 @@ const errMsgOpts = { type: "error", duration: 3000, showClose: true };
 //返回状态判断(添加响应拦截器)
 axios.interceptors.response.use(
   res => {
-    hideFullScreenLoading();
-    debugger;
     if (res.data != null && res.data.success == false) {
       Message.error({
         message: res.data.message,
@@ -46,7 +43,6 @@ axios.interceptors.response.use(
     return res;
   },
   error => {
-    hideFullScreenLoading();
     Message.error({
       message: "系统出现错误",
       ...errMsgOpts

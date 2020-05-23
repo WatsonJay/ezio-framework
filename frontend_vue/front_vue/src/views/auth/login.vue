@@ -3,7 +3,13 @@
     <el-main>
       <div class="login_div">
         <logo />
-        <div class="background_div">
+        <div
+          class="background_div"
+          v-loading="loading"
+          element-loading-text="登陆中"
+          element-loading-spinner="el-icon-loading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+        >
           <div class="title_div">
             <h3 class="title">{{ $t("system.login.title") }}</h3>
             <lang-select class="language_select" />
@@ -96,6 +102,7 @@ export default {
     return {
       passwordType: "password",
       visible: false,
+      loading: false,
       uuid: "",
       loginForm: {
         userName: "",
@@ -137,6 +144,7 @@ export default {
       this.$refs.login.validate(valid => {
         if (valid) {
           let params = Object.assign({}, this.loginForm);
+          this.loading = true;
           loginUrl(params).then(response => {
             if (response.success) {
               this.$message.success(response.message);
@@ -153,6 +161,10 @@ export default {
               );
               sessionStorage.setItem("userAvatorUrl", response.data.userPicUrl);
             }
+            this.loading = false;
+          },
+          error =>{
+            this.loading = false;
           });
         }
       });

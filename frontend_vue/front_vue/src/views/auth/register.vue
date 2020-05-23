@@ -2,7 +2,13 @@
   <el-container class="register-container">
     <el-main>
       <div class="register_div">
-        <div class="background_div">
+        <div
+          class="background_div"
+          v-loading="loading"
+          element-loading-text="登陆中"
+          element-loading-spinner="el-icon-loading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+        >
           <div class="title_div">
             <h3 class="title">{{ $t("system.register.title") }}</h3>
             <lang-select class="language_select" />
@@ -121,6 +127,7 @@ export default {
   data() {
     return {
       passwordType: "password",
+      loading: false,
       avatar: "",
       imageUrl: "",
       register: {
@@ -246,15 +253,17 @@ export default {
           formData.append("userMail", this.register.userMail);
           formData.append(
             "file",
-            this.avatar ? this.avatar.raw : "",
-            this.avatar.name
+            this.avatar ? this.avatar.raw : "", this.avatar ?this.avatar.name : ""
           );
-          debugger;
+          this.loading = true;
           addOrUpadteUserUrl(formData).then(response => {
             if (response.success) {
               this.$message.success(response.message);
               this.$router.push({ name: "login" });
             }
+            this.loading = false;
+          },error =>{
+            this.loading = false;
           });
         }
       });

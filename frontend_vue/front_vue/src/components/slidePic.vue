@@ -24,6 +24,7 @@ export default {
     return {
       //滑块x轴数据
       tips: this.$t("tip.slidingPic"),
+      imgSrc: "https://picsum.photos/300/160",
       slider: {
         mx: 0,
         bx: 0
@@ -57,9 +58,9 @@ export default {
 
       let blockDom = document.querySelector("#slider_block");
       let block = blockDom.getContext("2d");
-
+      debugger
       var img = new Image();
-      img.src = "https://picsum.photos/300/160";
+      img.src = this.imgSrc;
       backDom.height = img.height;
       blockDom.height = img.height;
       let mainxy = { x: mx, y: y, r: 9 };
@@ -69,6 +70,9 @@ export default {
       img.onload = function() {
         backImg.drawImage(img, 0, 0, img.width, img.height);
         block.drawImage(img, bx - mx, 0, img.width, img.height);
+      };
+      img.onerror = function() {
+        img.src =require("../assets/img/picsumError.jpg");
       };
     },
     drawBlock(dom, pos = { x: 254, y: 109, r: 9 }, type) {
