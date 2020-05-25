@@ -234,6 +234,7 @@ $light_gray: #eee;
   background-size: cover;
   .login_div {
     position: relative;
+    height: 100%;
     width: 420px;
     max-width: 100%;
     padding: 160px 35px 0;
@@ -241,6 +242,7 @@ $light_gray: #eee;
     overflow: hidden;
     .background_div {
       background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px #cac6c6;
       border-radius: 5px;
       .title_div {
         position: relative;

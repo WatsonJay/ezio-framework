@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+/* Layout */
+import Layout from "@/layout";
+
 //所有权限通用路由表
 //如首页和登录页和一些不用权限的公用页面
 export const constantRouterMap = [
@@ -29,7 +32,11 @@ export const constantRouterMap = [
     name: "403",
     component: () => import("@/views/error-page/403"),
     hidden: true
-  }
+  },
+  {
+    path: '/',
+    component: Layout
+  },
 ];
 
 //动态页面通过后台传至前端

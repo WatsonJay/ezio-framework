@@ -331,11 +331,13 @@ $light_gray: #eee;
     position: relative;
     width: 500px;
     max-width: 100%;
+    height: 100%;
     padding: 130px 35px 0;
     margin: 0 auto;
     overflow: hidden;
     .background_div {
       background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px #cac6c6;
       border-radius: 5px;
       .title_div {
         position: relative;
