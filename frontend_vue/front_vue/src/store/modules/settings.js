@@ -1,6 +1,5 @@
 import variables from "@/styles/element-variables.scss";
 import defaultSettings from "@/settings";
-import da from "element-ui/src/locale/lang/da";
 
 const {
   showSettings,

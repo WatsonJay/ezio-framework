@@ -6,9 +6,7 @@
 import ResizeMixin from "./mixins/ResizeHandler";
 export default {
   name: "Layout",
-  components: {
-
-  },
+  components: {},
   mixins: [ResizeMixin],
   computed: {
     classObj() {
@@ -19,7 +17,8 @@ export default {
         mobile: this.device === "mobile"
       };
     }
-  }
+  },
+  methods: {}
 };
 </script>
 
