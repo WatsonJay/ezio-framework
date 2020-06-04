@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import LangSelect from "@/components/langSelect";
+import LangSelect from "@/components/LangSelect";
 import { addOrUpadteUserUrl } from "@/api/auth/api.js";
 export default {
   name: "register",

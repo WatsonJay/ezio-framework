@@ -1,6 +1,6 @@
 const getters = {
   language: state => state.app.language,
-  siderbar: state => state.app.siderbar,
+  sidebar: state => state.app.sidebar,
   device: state => state.app.device,
   user: state => state.user.user
 };

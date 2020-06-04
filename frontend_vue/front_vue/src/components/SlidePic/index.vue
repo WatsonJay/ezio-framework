@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "slidePic",
+  name: "SlidePic",
   data() {
     return {
       //滑块x轴数据
@@ -72,7 +72,7 @@ export default {
         block.drawImage(img, bx - mx, 0, img.width, img.height);
       };
       img.onerror = function() {
-        img.src =require("../assets/img/picsumError.jpg");
+        img.src =require("../../assets/img/picsumError.jpg");
       };
     },
     drawBlock(dom, pos = { x: 254, y: 109, r: 9 }, type) {

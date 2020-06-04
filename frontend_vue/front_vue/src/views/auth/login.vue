@@ -59,7 +59,7 @@
                   trigger="manual"
                   v-model="visible"
                 >
-                  <slidePic :key="uuid" @verify="login"></slidePic>
+                  <SlidePic :key="uuid" @verify="login"></SlidePic>
                   <el-button
                     type="primary"
                     slot="reference"
@@ -87,16 +87,16 @@
 
 <script>
 import Logo from "@/components/logo";
-import LangSelect from "@/components/langSelect";
+import LangSelect from "@/components/LangSelect";
 import { loginUrl } from "@/api/auth/api.js";
 // 组件懒加载
-const slidePic = () => import("@/components/slidePic");
+const SlidePic = () => import("@/components/SlidePic");
 export default {
   name: "login",
   components: {
     Logo,
     LangSelect,
-    slidePic
+    SlidePic
   },
   data() {
     return {

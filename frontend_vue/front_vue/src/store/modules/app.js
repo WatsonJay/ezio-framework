@@ -3,7 +3,7 @@ import { getLanguage } from "@/lang/index";
 
 const state = {
   language: getLanguage(),
-  siderbar: {
+  sidebar: {
     opened: Cookies.get("sidebarStatus")
       ? !!+Cookies.get("sidebarStatus")
       : true,
@@ -17,10 +17,19 @@ const mutations = {
     state.language = language;
     Cookies.set("language", language);
   },
+  TOGGLE_SIDEBAR: state => {
+    state.sidebar.opened = !state.sidebar.opened
+    state.sidebar.withoutAnimation = false
+    if(state.sidebar.opened){
+      Cookies.set("sidebarStatus", 1);
+    }else{
+      Cookies.set("sidebarStatus", 0);
+    }
+  },
   CLOSE_SIDEBAR: (state, withoutAnimation) => {
-    Cookies.set("sidebar", 0);
-    state.siderbar.opened = false;
-    state.siderbar.withoutAnimation = withoutAnimation;
+    Cookies.set("sidebarStatus", 0);
+    state.sidebar.opened = false;
+    state.sidebar.withoutAnimation = withoutAnimation;
   },
   TOGGLE_DEVICE: (state, device) =>{
     state.device = device;
@@ -30,6 +39,9 @@ const mutations = {
 const actions = {
   setLanguage({ commit }, language) {
     commit("SET_LANGUAGE", language);
+  },
+  toggleSideBar ({ commit }) {
+    commit("TOGGLE_SIDEBAR")
   },
   closeSideBar({ commit }, { withoutAnimation }) {
     commit("CLOSE_SIDEBAR", withoutAnimation);

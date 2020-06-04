@@ -8,7 +8,7 @@ import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 //集成iconfont图标
 import "@/icons/iconfonts/iconfont.css";
 //全局scss
-import "./styles/main.scss";
+import "./styles/index.scss";
 //vue-i18n 多语言版本处理
 import i18n from "./lang";
 //全局校验规则
