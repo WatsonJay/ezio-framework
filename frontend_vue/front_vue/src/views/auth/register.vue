@@ -42,23 +42,21 @@
             :rules="rules"
           >
             <el-form-item prop="userName">
-              <i class="icon-tech icon-user" />
+              <svg-icon icon-class="user" />
               <el-input
                 v-model="register.userName"
                 :placeholder="$t('placeholder.username')"
               ></el-input>
             </el-form-item>
             <el-form-item prop="userNickName">
-              <i class="icon-tech icon-postcard" />
+              <svg-icon icon-class="postcard" />
               <el-input
                 v-model="register.userNickName"
                 :placeholder="$t('placeholder.nickname')"
               ></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <span>
-                <i class="icon-tech icon-3701mima" />
-              </span>
+              <svg-icon icon-class="3701mima" />
               <el-input
                 v-model="register.password"
                 ref="password"
@@ -66,17 +64,11 @@
                 :placeholder="$t('placeholder.password')"
               ></el-input>
               <span class="show-pwd" @click="pwdShow">
-                <i
-                  :class="
-                    passwordType === 'password'
-                      ? 'icon-tech icon-yanjing_yincang'
-                      : 'icon-tech icon-yanjing_xianshi'
-                  "
-                />
+                <svg-icon :icon-class="passwordType === 'password'? 'yanjing_yincang' : 'yanjing_xianshi'" />
               </span>
             </el-form-item>
             <el-form-item prop="checkpassword">
-              <i class="icon-tech icon-key" />
+              <svg-icon icon-class="key" />
               <el-input
                 v-model="register.checkpassword"
                 :type="passwordType"
@@ -84,14 +76,14 @@
               ></el-input>
             </el-form-item>
             <el-form-item prop="userMail">
-              <i class="icon-tech icon-youxiang" />
+              <svg-icon icon-class="youxiang" />
               <el-input
                 v-model="register.userMail"
                 :placeholder="$t('placeholder.Email')"
               ></el-input>
             </el-form-item>
             <el-form-item prop="userPhone">
-              <i class="icon-tech icon-phone" />
+              <svg-icon icon-class="phone" />
               <el-input
                 v-model="register.userPhone"
                 :placeholder="$t('placeholder.phone')"
@@ -350,12 +342,13 @@ $light_gray: #eee;
           border-bottom: 1px solid #ddd;
         }
         .language_select {
-          //color: #fff;
+          background: #ffffff;
+          border-radius:4px;
           overflow: hidden;
           position: absolute;
           top: 13px;
-          right: 15px;
-          font-size: 18px;
+          right: 20px;
+          font-size: 20px;
           cursor: pointer;
         }
       }

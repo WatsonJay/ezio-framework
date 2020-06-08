@@ -21,7 +21,7 @@
             :rules="rules"
           >
             <el-form-item prop="userName">
-              <i class="icon-tech icon-user" />
+              <svg-icon icon-class="user" />
               <el-input
                 ref="userName"
                 v-model="loginForm.userName"
@@ -31,9 +31,7 @@
               />
             </el-form-item>
             <el-form-item prop="password">
-              <span>
-                <i class="icon-tech icon-3701mima" />
-              </span>
+              <svg-icon icon-class="3701mima" />
               <el-input
                 ref="password"
                 v-model="loginForm.password"
@@ -42,13 +40,7 @@
                 tabindex="2"
               />
               <span class="show-pwd" @click="pwdShow">
-                <i
-                  :class="
-                    passwordType === 'password'
-                      ? 'icon-tech icon-yanjing_yincang'
-                      : 'icon-tech icon-yanjing_xianshi'
-                  "
-                />
+                <svg-icon :icon-class="passwordType === 'password' ? 'yanjing_yincang' : 'yanjing_xianshi'" />
               </span>
             </el-form-item>
             <el-row :gutter="8" class="login-btn">
@@ -255,12 +247,13 @@ $light_gray: #eee;
           border-bottom: 1px solid #ddd;
         }
         .language_select {
-          //color: #fff;
+          background: #ffffff;
+          border-radius:4px;
           overflow: hidden;
           position: absolute;
           top: 13px;
-          right: 15px;
-          font-size: 18px;
+          right: 20px;
+          font-size: 20px;
           cursor: pointer;
         }
       }

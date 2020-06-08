@@ -3,6 +3,8 @@
     <Hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
     <div class="right-menu">
       <template v-if="device!=='mobile'">
+        <search id="header-search" class="right-menu-item  hover-effect" />
+        <Screenfull  id="screenfull" class="right-menu-item hover-effect" />
         <lang-select class="right-menu-item hover-effect" />
       </template>
     </div>
@@ -12,11 +14,16 @@
 <script>
 import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
+import Search from "@/components/HeaderSearch";
 import LangSelect from "@/components/LangSelect";
+import Screenfull from "@/components/Screenfull";
+
 export default {
   components: {
     Hamburger,
-    LangSelect
+    Search,
+    LangSelect,
+    Screenfull
   },
   computed: {
     ...mapGetters([

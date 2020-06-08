@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
-    <div class = "button">
-      <i class="icon-tech icon-zhongyingwen"/>
+    <div>
+      <svg-icon class-name="international-icon" icon-class="zhongyingwen" />
     </div>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item :disabled="language==='zh'" command="zh">
@@ -34,11 +34,3 @@
       }
     }
 </script>
-
-<style lang="scss" scoped>
-  .button{
-    background: #fff;
-    padding: 2px 4px;
-    border-radius:4px;
-  }
-</style>

@@ -6,15 +6,17 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 //集成iconfont图标
+import "@/icons/iconfonts/iconfont.js";
 import "@/icons/iconfonts/iconfont.css";
+import "./icons/index"
 //全局scss
 import "./styles/index.scss";
 //vue-i18n 多语言版本处理
 import i18n from "./lang";
 //全局校验规则
-import validate from "./util/validate.js";
+import validate from "./utils/validate.js";
 //axios
-import "./util/axios.js";
+import "./utils/axios.js";
 
 Vue.config.productionTip = false;
 
