@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      title: "Vue Element Ezio",
+      title: "Ezio FrameWork",
       logo: require("@/assets/img/miniLogo.png")
     };
   }

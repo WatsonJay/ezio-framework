@@ -4,9 +4,19 @@
     <div class="right-menu">
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item  hover-effect" />
-        <Screenfull  id="screenfull" class="right-menu-item hover-effect" />
-        <lang-select class="right-menu-item hover-effect" />
+        <el-tooltip :content="$t('tip.screenfull')" effect="dark" placement="bottom">
+          <Screenfull  id="screenfull" class="right-menu-item hover-effect" />
+        </el-tooltip>
+        <el-tooltip :content="$t('tip.GroableSize')" effect="dark" placement="bottom">
+          <lang-select class="right-menu-item hover-effect" />
+        </el-tooltip>
       </template>
+
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="">
+        <div class="avatar-wrapper">
+
+        </div>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -67,6 +77,7 @@ export default {
     &:focus {
       outline: none;
     }
+
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
@@ -83,6 +94,10 @@ export default {
           background: rgba(0, 0, 0, .025)
         }
       }
+    }
+
+    .avatar-container{
+      margin-right: 30px;
     }
   }
 }

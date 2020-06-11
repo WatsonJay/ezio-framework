@@ -18,6 +18,12 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <!--声明子模块 -->
+    <modules>
+        <module>techonline-booter</module>
+
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

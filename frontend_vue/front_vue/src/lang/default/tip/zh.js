@@ -4,5 +4,7 @@ export default {
   slidingPic: "拖动左边滑块完成上方拼图",
   slidingPicError: "验证失败，请重试",
   slidingPicSuccess: "验证成功",
-  pic: "请点击上传jpg/png文件，且不超过2M"
+  pic: "请点击上传jpg/png文件，且不超过2M",
+  GroableSize: "全局大小",
+  screenfull: "全屏"
 }
