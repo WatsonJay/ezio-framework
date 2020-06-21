@@ -1,0 +1,8 @@
+LANG: zh_CN
+DataSource:
+  USERNAME: root # 用户名
+  PASSWORD: AES@6b5c41aa0669b5c476e19720eae7b8ed # 密码
+  HOST: 106.14.220.77 # 数据库地址
+  PORT: 3306 # 端口
+  DATABASE: technology_online # 数据库名
+  PARAM: charset=utf8  #服务器连接参数
