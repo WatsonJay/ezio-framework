@@ -12,7 +12,7 @@ handlers:
     class: logging.handlers.TimedRotatingFileHandler
     level: WARNING
     formatter: simple
-    filename: ./log/message.log
+    filename: ./logs/message.log
     #增量间隔
     interval: 1
     #增量频度，D为天，H为小时
@@ -29,11 +29,12 @@ handlers:
 
 #实体
 loggers:
-  root:
+  libs:
     level: DEBUG
     handlers: [file,stream]
-  manage:
-    level: DEBUG
-    handlers: [file,stream]
-    qualname: git
+    qualname: Libs
     propagate: 0
+
+root:
+    level: INFO
+    handlers: [file,stream]
