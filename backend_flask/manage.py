@@ -15,9 +15,10 @@ api = Api(app)
 class HelloWorld(Resource):
     def get(self):
         test_dict = dict(name='', age=18)
-        res = ResMsg(200,test_dict)
         sql = BaseSql(Test)
-        sql._insert([{"a":"1","b":"2","c":"3"}])
+        data = sql._select({})
+        data = sql._execute_sql('select a,c from t_test', [{'logic':'and','sql':'a in :test','key':'test','value':[1,2]}])
+        res = ResMsg(200, data)
         return res.data()
 
 api.add_resource(HelloWorld, '/')
