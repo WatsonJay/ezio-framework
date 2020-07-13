@@ -31,12 +31,32 @@ class BaseSql:
             return False
 
     '''删除'''
-    def _delete(self,args):
-        print(1)
+    def _delete(self,key):
+        model = self._get(key)
+        if model:
+            try:
+                db.session.delete(model)
+                db.session.commit()
+                return True
+            except Exception as e:
+                db.session.rollback()
+                logger.error(e)
+                return False
 
     '''更新'''
-    def _updata(self,args):
-        print(2)
+    def _updata(self,key,args):
+        model = self._get(key)
+        if model:
+            for k, v in args.items():
+                setattr(model, k, v)
+            db.session.add(model)
+            try:
+                db.session.commit()
+                return True
+            except Exception as e:
+                db.session.rollback()
+                logger.error(e)
+                return False
 
     '''查询'''
     def _select(self,args):
@@ -46,6 +66,10 @@ class BaseSql:
     '''分页查询'''
     def _select_by_page(self, args):
         print(4)
+
+    '''根据主键ID获取数据'''
+    def _get(self, key):
+        return self.__model__.query.get(key)
 
     '''直接执行sql'''
     def _execute_sql(self, sql, conditions=[], page=-1, limit=-1):

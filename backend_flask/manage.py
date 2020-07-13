@@ -16,8 +16,9 @@ class HelloWorld(Resource):
     def get(self):
         test_dict = dict(name='', age=18)
         sql = BaseSql(Test)
+        sql._updata(1, {'a':1,'b':1,'c':2})
+        sql._delete(4)
         data = sql._select({})
-        data = sql._execute_sql('select a,c from t_test', [{'logic':'and','sql':'a in :test','key':'test','value':[1,2]}])
         res = ResMsg(200, data)
         return res.data()
 
