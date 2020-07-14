@@ -4,7 +4,7 @@
 # @File    : test.py
 # @Soft    : backend_flask
 
-from libs.Core import db
+from libs.core import db
 
 # 新建用户
 class Test(db.Model):

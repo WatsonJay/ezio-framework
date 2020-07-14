@@ -8,8 +8,9 @@ import os
 import logging
 import logging.config
 from flask import Flask
-from libs import GetYaml
-from libs.Core import getDataSource, db
+from libs import get_yaml
+from api.router import router
+from libs.core import getDataSource,db,register_api,scheduler_init
 
 def create_app():
     try:
@@ -17,10 +18,10 @@ def create_app():
 
         #加载配置文件
         config = None
-        langConfig = GetYaml.read_yaml_file("config/msg.yaml")
-        commonConfig = GetYaml.read_yaml_file("config/application.yaml")
+        langConfig = get_yaml.read_yaml_file("config/msg.yaml")
+        commonConfig = get_yaml.read_yaml_file("config/application.yaml")
         profileName = commonConfig['application']['active']['profile']
-        profileConfig = GetYaml.read_yaml_file("config/application-" + profileName + ".yaml")
+        profileConfig = get_yaml.read_yaml_file("config/application-" + profileName + ".yaml")
         config = {**commonConfig,**profileConfig,**langConfig}
         app.config.update(config)
 
@@ -46,12 +47,19 @@ def create_app():
         db.app = app
         db.init_app(app)
 
+        # 注册定时任务
+        if profileConfig['Scheduler']:
+            scheduler_init(app)
+
         #加载日志配置
         if not os.path.exists("./logs"):
             os.makedirs("./logs")
-        loggingConfig = GetYaml.read_yaml_file("config/logging.yaml")
+        loggingConfig = get_yaml.read_yaml_file("config/logging.yaml")
         loggingConfig['handlers']['file']['filename'] = './logs/message.log'
         logging.config.dictConfig(loggingConfig)
+
+        #注册蓝图
+        register_api(app, router)
 
         return app
     except Exception as e:

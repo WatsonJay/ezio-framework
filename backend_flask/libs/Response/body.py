@@ -4,7 +4,7 @@
 # @File    : ResponseBody.py
 # @Soft    : backend_flask
 from flask import current_app
-from libs.Response.Code import ResponseCode
+from libs.Response.code import ResponseCode
 
 
 class ResMsg:

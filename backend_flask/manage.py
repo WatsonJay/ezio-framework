@@ -4,8 +4,9 @@
 # @File    : manage.py
 # @Soft    : backend_flask
 from libs import create_app
-from flask_restful import Api
-app = create_app()
-ApiCenter = Api(app)
+from app.test import testBp
 
-import api
+app = create_app()
+
+app.register_blueprint(testBp)
+

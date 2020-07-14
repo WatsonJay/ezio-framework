@@ -4,7 +4,7 @@
 # @File    : SQLFactory.py
 # @Soft    : backend_flask
 import logging
-from libs.Core import db
+from libs.core import db
 
 logger = logging.getLogger("libs")
 

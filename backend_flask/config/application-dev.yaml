@@ -12,3 +12,5 @@ Redis:
   HOST: * #redis地址
   PORT: * #端口
   DB: * #数据库
+
+Scheduler: False
