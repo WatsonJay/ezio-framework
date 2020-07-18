@@ -4,9 +4,6 @@
 # @File    : manage.py
 # @Soft    : backend_flask
 from libs import create_app
-from app.test import testBp
 
 app = create_app()
-
-app.register_blueprint(testBp)
-
+app.app_context().push()

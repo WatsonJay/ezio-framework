@@ -15,16 +15,17 @@ db = SQLAlchemy()
 scheduler = APScheduler()
 
 '''数据库连接词'''
-def getDataSource(USERNAME = '', PASSWORD = '', HOST = '', PORT = '', DATABASE = '', PARAM = ''):
+def getDataSource(USERNAME='', PASSWORD='', HOST='', PORT='', DATABASE='', PARAM=''):
     if PASSWORD != '' and PASSWORD.startswith('AES@'):
         PASSWORD = decrypt(PASSWORD[4:])
-    database_url ='mysql+pymysql://{}:{}@{}:{}/{}?{}'.format(USERNAME,PASSWORD,HOST,PORT,DATABASE,PARAM)
+    database_url = 'mysql+pymysql://{}:{}@{}:{}/{}?{}'.format(USERNAME, PASSWORD, HOST, PORT, DATABASE, PARAM)
     return database_url
+
 
 '''redis数据库操作'''
 class Redis(object):
-
     '''获取配置'''
+
     @staticmethod
     def _get_config():
         host = current_app.config['REDIS_HOST']
@@ -35,6 +36,7 @@ class Redis(object):
         return redis_config
 
     '''写入键值对'''
+
     @classmethod
     def write(cls, key, value, expire=None):
         redis_config = cls._get_config()
@@ -45,6 +47,7 @@ class Redis(object):
             redis_config.set(key, value)
 
     '''读取键值对'''
+
     @classmethod
     def read(cls, key):
         redis_config = cls._get_config()
@@ -52,12 +55,14 @@ class Redis(object):
         return value.decode('utf-8') if value else ''
 
     '''写入hash表'''
+
     @classmethod
     def hset(cls, name, key, value):
         redis_config = cls._get_config()
         redis_config.hset(name, key, value)
 
     '''读取指定hash表的所有给定字段的值'''
+
     @classmethod
     def hmset(cls, key, *value):
         redis_config = cls._get_config()
@@ -65,6 +70,7 @@ class Redis(object):
         return value
 
     '''读取指定hash表的键值'''
+
     @classmethod
     def hget(cls, name, key):
         redis_config = cls._get_config()
@@ -72,30 +78,35 @@ class Redis(object):
         return value.decode('utf-8') if value else value
 
     '''获取指定hash表所有的值'''
+
     @classmethod
     def hgetall(cls, name):
         redis_config = cls._get_config()
         return redis_config.hgetall(name)
 
     '''删除一个或者多个'''
+
     @classmethod
     def delete(cls, *names):
         redis_config = cls._get_config()
         redis_config.delete(*names)
 
     '''删除指定hash表的键值'''
+
     @classmethod
     def hdel(cls, name, key):
         redis_config = cls._get_config()
         redis_config.hdel(name, key)
 
     '''设置过期时间'''
+
     @classmethod
     def expire(cls, name, expire=None):
         if expire:
             expire_in_seconds = expire
             redis_config = cls._get_config()
             redis_config.expire(name, expire_in_seconds)
+
 
 '''注册蓝图'''
 def register_api(app, routers):
@@ -104,7 +115,7 @@ def register_api(app, routers):
             app.register_blueprint(router)
         elif isinstance(router, dict):
             try:
-                for key,value in router.items():
+                for key, value in router.items():
                     endpoint = key.__name__
                     view_func = key.as_view(endpoint)
                     url = value
@@ -120,6 +131,7 @@ def register_api(app, routers):
             except Exception as e:
                 raise ValueError(e)
 
+
 '''任务调度注册'''
 def scheduler_init(app):
     if platform.system() != 'Windows':
@@ -129,7 +141,7 @@ def scheduler_init(app):
             fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
             scheduler.init_app(app)
             scheduler.start()
-            app.logger.debug('Scheduler Started,---------------')
+            app.logger.debug('--------Scheduler Started--------')
         except:
             pass
 
@@ -145,7 +157,7 @@ def scheduler_init(app):
             msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
             scheduler.init_app(app)
             scheduler.start()
-            app.logger.debug('Scheduler Started,----------------')
+            app.logger.debug('--------Scheduler Started--------')
         except Exception as e:
             pass
 

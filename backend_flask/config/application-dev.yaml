@@ -13,4 +13,7 @@ Redis:
   PORT: * #端口
   DB: * #数据库
 
-Scheduler: False
+Scheduler:
+  ENABLE: True
+  THREADPOOL: 20
+  MAX_INSTANCES: 3
