@@ -2,7 +2,7 @@ import axios from "axios";
 import { base } from "@/api/config.js";
 
 /*
-  quanxian相关接口
+  权限相关接口
  */
 //用户注册API
 export const addOrUpadteUserUrl = params => {

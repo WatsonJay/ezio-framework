@@ -24,7 +24,8 @@ export default {
     return {
       //滑块x轴数据
       tips: this.$t("tip.slidingPic"),
-      imgSrc: "https://picsum.photos/300/160",
+      //imgSrc: "https://picsum.photos/300/160", //在线图片
+      imgSrc: require("../../assets/img/picsumError.jpg"),
       slider: {
         mx: 0,
         bx: 0

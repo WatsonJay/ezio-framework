@@ -20,6 +20,11 @@ import "./utils/axios.js";
 
 Vue.config.productionTip = false;
 
+if (process.env.NODE_ENV === 'development') {
+  const { mockXHR } = require('../mock')
+  mockXHR()
+}
+
 Vue.use(ElementUI);
 Vue.use({
   //size: Cookies.get('size') || 'medium', // set element-ui default size

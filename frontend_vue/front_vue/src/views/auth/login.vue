@@ -138,7 +138,7 @@ export default {
           let params = Object.assign({}, this.loginForm);
           this.loading = true;
           loginUrl(params).then(response => {
-            if (response.success) {
+            if (response.code == 200) {
               this.$message.success(response.message);
               this.$store.dispatch("user/setUser", {
                 username: this.loginForm.userName,
@@ -147,15 +147,16 @@ export default {
               });
               sessionStorage.setItem("access-token", response.data.userToken);
               sessionStorage.setItem("userName", this.loginForm.userName);
-              sessionStorage.setItem(
-                "userNickName",
-                response.data.userNickName
-              );
+              sessionStorage.setItem("userNickName", response.data.userNickName);
               sessionStorage.setItem("userAvatorUrl", response.data.userPicUrl);
+              this.$router.push({name:'Home'});
+            }else {
+              this.$message.error(response.message);
             }
             this.loading = false;
           },
           error =>{
+            this.$message.error("登录异常，请重试")
             this.loading = false;
           });
         }

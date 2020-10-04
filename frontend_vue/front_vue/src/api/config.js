@@ -8,7 +8,7 @@ function getHeader() {
       head = ""; //开发环境url
       break;
     case "production":
-      //http://localhost:8082
+      //http://localhost:13520
       head = location.protocol + "//" + location.host; //生产环境url
       break;
   }
