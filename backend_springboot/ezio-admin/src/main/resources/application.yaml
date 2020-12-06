@@ -1,0 +1,54 @@
+# 项目相关配置
+ezio:
+  # 名称
+  name: ezio
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2020
+  #AESKEY
+  aesKey: ****************
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为80
+  port: 14520
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+#日志管理
+logging:
+  config: classpath:log4j2.xml
+
+spring:
+  profiles:
+    #指定读取的配置文件: database(连接信息)
+    active: database
+
+#shiro权限管理配置
+shiro:
+  user:
+
+#mybatis-plus配置
+mybatis-plus:
+  #mapper扫描位置
+  mapper-locations: classpath*:mapper/**/*Mapper.xml,classpath*:mapper/**/*.mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.ezio.**.domain,com.learning.**.domain.dto,com.learning.**.domain.po
+  global-config:
+    db-config:
+      #驼峰下划线转换
+      table-underline: true
+      db-column-underline: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl

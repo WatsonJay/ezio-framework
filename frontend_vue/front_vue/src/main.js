@@ -2,13 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import 'normalize.css/normalize.css' // a modern alternative to CSS resets
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+import "normalize.css/normalize.css"; // a modern alternative to CSS resets
 //集成iconfont图标
 import "@/icons/iconfonts/iconfont.js";
 import "@/icons/iconfonts/iconfont.css";
-import "./icons/index"
+import "./icons/index";
 //全局scss
 import "./styles/index.scss";
 //vue-i18n 多语言版本处理
@@ -20,9 +20,9 @@ import "./utils/axios.js";
 
 Vue.config.productionTip = false;
 
-if (process.env.NODE_ENV === 'development') {
-  const { mockXHR } = require('../mock')
-  mockXHR()
+if (process.env.NODE_ENV === "development") {
+  const { mockXHR } = require("../mock");
+  mockXHR();
 }
 
 Vue.use(ElementUI);
