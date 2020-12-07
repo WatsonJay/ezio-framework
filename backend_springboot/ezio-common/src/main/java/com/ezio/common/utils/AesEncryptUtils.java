@@ -8,24 +8,18 @@ package com.ezio.common.utils;
  * @createTime 2020年11月25日 22:12:00
  */
 
-import javax.annotation.PostConstruct;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
-
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class AesEncryptUtils {
 
     private static String KEY = "";
 
-    //参数分别代表 算法名称/加密模式/数据填充方式
+    /**
+     * 参数分别代表 算法名称/加密模式/数据填充方式
+     */
     private static final String ALGORITHMSTR = "AES/ECB/PKCS5Padding";
 
     /**

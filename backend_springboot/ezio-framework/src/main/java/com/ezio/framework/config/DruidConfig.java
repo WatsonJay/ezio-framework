@@ -39,7 +39,7 @@ import com.ezio.framework.datasource.DynamicDataSource;
  * @author admin
  * @version 1.0.0
  * @ClassName DruidConfig.java
- * @Description TODO
+ * @Description druid配置文件
  * @createTime 2020年11月11日 17:02:00
  */
 @Configuration

@@ -14,7 +14,7 @@ import java.util.Date;
  * @author admin
  * @version 1.0.0
  * @ClassName JwtUtils.java
- * @Description TODO
+ * @Description jwt工具类
  * @createTime 2020年12月05日 10:32:00
  */
 public class JwtUtils {
