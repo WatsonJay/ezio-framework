@@ -3,13 +3,12 @@
 # @Author  : Jaywatson
 # @File    : __init__.py
 # @Soft    : backend_flask
-import atexit
-import platform
 import os
 import logging
 import logging.config
 from flask import Flask
 from libs import get_yaml
+from libs.exception import exception_handler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from libs.core import getDataSource, db, register_api, scheduler_init
 
@@ -69,6 +68,7 @@ def create_app():
 
         # 注册蓝图
         from api.router import router
+        router.append(exception_handler.exception)
         register_api(app, router)
 
         return app

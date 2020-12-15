@@ -4,7 +4,9 @@
 # @File    : router.py
 # @Soft    : backend_flask
 from app.test import testBp
+from app.test.hello import get1
 
 router = [
-    testBp
+    testBp,
+    # {get1: "/helloworld1"}
 ]

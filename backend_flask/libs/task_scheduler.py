@@ -34,19 +34,19 @@ class TaskScheduler():
     def remove_job(cls, jobid, jobstore=None):
         """删除任务"""
         try:
-            scheduler.remove_job(jobid, jobstore=jobstore)
+            current_app.apscheduler.remove_job(jobid, jobstore=jobstore)
         except:
             pass
 
     @classmethod
     def resume_job(cls, jobid, jobstore=None):
         """恢复任务"""
-        scheduler.resume_job(jobid, jobstore=jobstore)
+        current_app.apscheduler.resume_job(jobid, jobstore=jobstore)
 
     @classmethod
     def pause_job(cls, jobid, jobstore=None):
         """恢复任务"""
-        scheduler.pause_job(jobid, jobstore=jobstore)
+        current_app.apscheduler.pause_job(jobid, jobstore=jobstore)
 
     @staticmethod
     def fix_job_def(job_def):
