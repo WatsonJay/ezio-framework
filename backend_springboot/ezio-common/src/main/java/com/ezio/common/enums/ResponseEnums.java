@@ -24,7 +24,7 @@ public enum ResponseEnums {
     /* 登录错误: 20001-29999*/
     /* 业务错误: 30001-39999 */
     /* 系统错误: 40001-49999 */
-    UTIL_EXCEPTION("40001", "uitl.exception");
+    RUNTIME_EXCEPTION("40001", "runtime.exception");
     /* 接口错误: 50001-599999 */
 
     private String code;

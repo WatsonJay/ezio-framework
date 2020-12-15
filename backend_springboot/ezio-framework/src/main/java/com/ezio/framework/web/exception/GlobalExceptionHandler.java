@@ -26,16 +26,16 @@ public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
-     * 工具类异常的捕获
+     * 运行时异常的捕获
      * 自定义抛出异常。统一的在这里捕获返回JSON格式的友好提示。
      * @param exception
      * @return
      */
-    @ExceptionHandler(value={UtilException.class})
+    @ExceptionHandler(value={RuntimeException.class})
     @ResponseBody
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
-    public <T> ResponseBean<T> sendError(UtilException exception){
+    public <T> ResponseBean<T> sendError(RuntimeException exception){
         logger.error("occurs error when execute method ,message {}",exception.getMessage());
-        return new ResponseBean<>(false, ResponseEnums.UTIL_EXCEPTION);
+        return new ResponseBean<>(false, ResponseEnums.RUNTIME_EXCEPTION);
     }
 }
