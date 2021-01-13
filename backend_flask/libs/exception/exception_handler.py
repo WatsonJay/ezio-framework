@@ -11,7 +11,6 @@ from libs.exception.util_exception import UtilException
 exception = Blueprint('exception',__name__)
 
 @exception.app_errorhandler(UtilException)
-def testException(error):
-    print("------test Exception-------")
+def utilExceptionHandler(error):
     res = ResMsg(error.status_code, error.to_dict())
     return res.data()

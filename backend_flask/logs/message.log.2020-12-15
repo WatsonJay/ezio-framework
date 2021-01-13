@@ -1,0 +1,70 @@
+[2020-12-15 10:35:52] ERROR 11084:[app.py:1892] - Exception on /v1/test/helloworld [GET]
+Traceback (most recent call last):
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "G:\technology\ezio-framework\backend_flask\app\test\helloworld.py", line 27, in get
+    abort(404)
+TypeError: abort() takes no arguments (1 given)
+[2020-12-15 11:04:23] ERROR 10964:[app.py:1892] - Exception on /v1/test/helloworld [GET]
+Traceback (most recent call last):
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "G:\technology\ezio-framework\backend_flask\app\test\helloworld.py", line 28, in get
+    raise UtilException('this is a test',status_code=1010)
+libs.exception.util_exception.UtilException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1822, in handle_user_exception
+    return handler(e)
+TypeError: testException() takes 0 positional arguments but 1 was given
+[2020-12-15 11:05:10] ERROR 3288:[app.py:1892] - Exception on /v1/test/helloworld [GET]
+Traceback (most recent call last):
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2098, in make_response
+    "The view function did not return a valid response. The"
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+[2020-12-15 11:09:55] ERROR 9480:[app.py:1892] - Exception on /v1/test/helloworld [GET]
+Traceback (most recent call last):
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2131, in make_response
+    " {rv.__class__.__name__}.".format(rv=rv)
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a ResMsg.
+[2020-12-15 11:13:21] ERROR 1280:[app.py:1892] - Exception on /v1/test/helloworld [GET]
+Traceback (most recent call last):
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "G:\technology\ezio-framework\backend_flask\venv\lib\site-packages\flask\app.py", line 2131, in make_response
+    " {rv.__class__.__name__}.".format(rv=rv)
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a ResMsg.

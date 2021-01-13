@@ -28,7 +28,6 @@ class TaskScheduler():
         job_def = cls.fix_job_def(job_def)
         cls.remove_job(jobid)
         current_app.apscheduler.add_job(**job_def)
-        #scheduler.add_job(**job_def)
 
     @classmethod
     def remove_job(cls, jobid, jobstore=None):

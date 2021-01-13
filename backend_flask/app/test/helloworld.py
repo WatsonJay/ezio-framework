@@ -6,6 +6,7 @@
 from os import abort
 
 from libs.Response.body import ResMsg
+from libs.jwt.wrap import login_auth
 from models.test import *
 from libs.sql_factory import BaseSql
 from app.test import testBp
@@ -13,6 +14,7 @@ from libs.exception.util_exception import UtilException
 
 
 @testBp.route("/helloworld", methods=["GET"])
+@login_auth
 def get():
     test_dict = dict(name='', age=18)
     # sql = BaseSql(Test)

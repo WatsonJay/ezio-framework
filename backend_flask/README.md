@@ -22,14 +22,33 @@ AES_SECRET_KEY                //AES加解密key
 ```
 
 ##模块蓝图创建或方法注册
+###模块蓝图创建方法
 ```
-1.蓝图注册：
-    创建相关package，在__init__.py文件中创建蓝图，eg:testBp = Blueprint("test", __name__, url_prefix="/v1"),
-    并引入相关路由模块。 在api.router中添加相关蓝图
-2.MethodView注册：
+蓝图注册：
+    1.创建相关package，在__init__.py文件中创建蓝图，并引入相关路由模块。
+    eg:testBp = Blueprint("test", __name__, url_prefix="/v1"),
+    2. 在api.router中添加相关蓝图
+
+```
+
+###方法注册
+```
+MethodView注册：
     将相关方法以{方法名：访问路径}插入api.router
+eg：
+class AuthMethodView(MethodView):
+    # 指定需要启用的请求方法
+    __methods__ = ["GET", "POST", "PUT"]
+
+    def get(self):
+        return "测试自定义MethodView"
+
+    def post(self):
+        return "测试自定义MethodView"
+
+    def put(self):
+        return "测试自定义MethodView"
+
+    def delete(self):
+        return "测试自定义MethodView"
 ```
-
-##模块蓝图创建方法
-
-##模块蓝图
