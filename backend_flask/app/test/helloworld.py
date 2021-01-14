@@ -10,7 +10,8 @@ from libs.jwt.wrap import login_auth
 from models.test import *
 from libs.sql_factory import BaseSql
 from app.test import testBp
-from libs.exception.util_exception import UtilException
+from libs.exception.exception_method import ExceptionMethod
+from libs.Response.code import ResponseCode
 
 
 @testBp.route("/helloworld", methods=["GET"])
@@ -27,7 +28,7 @@ def get():
     # TaskScheduler.add_job('test','app.test.helloworld:hello',None,**test)
     #TaskScheduler.remove_job('test')
     # return res.data()
-    raise UtilException('this is a test',status_code=1010)
+    raise ExceptionMethod('this is a test',status_code=ResponseCode.BROKENTOKEN)
 
 def hello():
     print("----test-----")

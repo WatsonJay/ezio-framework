@@ -6,3 +6,4 @@
 
 class ResponseCode(object):
     SUCCESS = 200  # 成功
+    BROKENTOKEN = 10001 # token 内容异常

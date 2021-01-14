@@ -1,5 +1,7 @@
 zh_CN:
   200: "成功"
+  10001: "受损请求"
 
 EN:
-  200: "success"
+  200: "SUCCESS"
+  10001: “BROKEN TOKEN”

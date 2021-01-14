@@ -6,11 +6,11 @@
 from flask import Blueprint
 
 from libs.Response.body import ResMsg
-from libs.exception.util_exception import UtilException
+from libs.exception.exception_method import ExceptionMethod
 
 exception = Blueprint('exception',__name__)
 
-@exception.app_errorhandler(UtilException)
+@exception.app_errorhandler(ExceptionMethod)
 def utilExceptionHandler(error):
-    res = ResMsg(error.status_code, error.to_dict())
+    res = ResMsg(error.status_code)
     return res.data()

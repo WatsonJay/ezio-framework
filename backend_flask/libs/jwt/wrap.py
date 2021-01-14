@@ -5,7 +5,7 @@
 # @Soft    : backend_flask
 
 from functools import wraps
-
+from libs.jwt.util import identify
 from flask import request
 
 
@@ -20,6 +20,7 @@ def login_auth(f):
     def wrapper(*args, **kwargs):
         token = request.headers.get("Authorization", default=None)
         path = request.path
+        infoDict = identify(token)
         
         return f(*args, **kwargs)
     return wrapper
