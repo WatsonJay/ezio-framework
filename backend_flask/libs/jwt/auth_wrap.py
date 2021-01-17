@@ -23,8 +23,17 @@ def login_auth(f):
     def wrapper(*args, **kwargs):
         token = request.headers.get("Authorization", default=None)
         path = request.path
+        method = request.method
         if token == Redis.read(path) or token == '':
             raise ExceptionMethod('this is a test', status_code=ResponseCode.INVALIDTOKEN)
         infoDict = identify(token)
+        if method == 'GET':
+            data = request.args
+        elif method == 'POST':
+            data = request.json
+        else:
+            data = {}
+        if data != infoDict:
+            raise ExceptionMethod('this is a test', status_code=ResponseCode.INVALIDTOKEN)
         return f(*args, **kwargs)
     return wrapper
