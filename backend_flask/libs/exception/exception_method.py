@@ -5,7 +5,7 @@
 # @Soft    : backend_flask
 
 class ExceptionMethod(Exception):
-    status_code = 10001
+    status_code = 1
 
     def __init__(self, message, status_code=None, payload=None):
         Exception.__init__(self)

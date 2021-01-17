@@ -11,6 +11,12 @@ from libs.exception.exception_method import ExceptionMethod
 exception = Blueprint('exception',__name__)
 
 @exception.app_errorhandler(ExceptionMethod)
-def utilExceptionHandler(error):
+def ExceptionHandler(error):
     res = ResMsg(error.status_code)
-    return res.data()
+    return res.errorData()
+
+@exception.app_errorhandler(Exception)
+def ExceptionHandler(error):
+    res = ResMsg('E9999')
+    return res.errorData()
+

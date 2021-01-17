@@ -8,9 +8,9 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://*************:3306/technology_online?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-        username: *****
-        password: *****
+        url: jdbc:mysql://106.14.220.77:3306/technology_online?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
@@ -75,9 +75,9 @@ spring:
         class: com.ezio.framework.datasource.AesDruidPasswordCallback
   #redis服务器
   redis:
-    host: ***************
+    host: 192.168.132.135
     port: 6379
-    password: ******************************
+    password: AES@m9uxCaal44k+4RWcGkRY+g==
     database: 0
     jedis:
       pool:

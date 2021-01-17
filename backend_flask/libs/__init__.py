@@ -8,7 +8,8 @@ import logging
 import logging.config
 from flask import Flask
 from libs import get_yaml
-from libs.exception import exception_handler
+from libs.exception.exception_handler import exception
+from libs.jwt.auth_handler import jwtAuth
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from libs.core import getDataSource, db, register_api, scheduler_init
 
@@ -25,7 +26,7 @@ def create_app():
         profileConfig = get_yaml.read_yaml_file("config/application-" + profileName + ".yaml")
         config = {**langConfig}
         app.config.update(config)
-        app.config['LANG'] = profileConfig['LANG']
+        app.config['LANG'] = commonConfig['LANG']
 
         ##添加数据库配置文件到flask App中
         _username = profileConfig['DataSource']['USERNAME']
@@ -44,19 +45,21 @@ def create_app():
         app.config['REDIS_PORT'] = profileConfig['Redis']['PORT']
         app.config['REDIS_PASS'] = profileConfig['Redis']['PASSWORD']
         app.config['REDIS_DB'] = profileConfig['Redis']['DB']
+        app.config['REDIS_EXPIRE'] = profileConfig['Redis']['EXPIRE_TIME']
+        app.config['REDIS_TIMEOUT'] = profileConfig['Redis']['TIMEOUT']
 
         # 注册数据库连接
         db.app = app
         db.init_app(app)
 
         # 注册定时任务
-        if profileConfig['Scheduler']['ENABLE']:
+        if commonConfig['Scheduler']['ENABLE']:
             app.config['SCHEDULER_API_ENABLED'] = True
             app.config['SCHEDULER_JOBSTORES'] = {'default': SQLAlchemyJobStore(url=database_url)}
             app.config['SCHEDULER_EXECUTORS'] = {
-                'default': {'type': 'threadpool', 'max_workers': profileConfig['Scheduler']['THREADPOOL']}}
+                'default': {'type': 'threadpool', 'max_workers': commonConfig['Scheduler']['THREADPOOL']}}
             app.config['SCHEDULER_JOB_DEFAULTS'] = {'coalesce': False,
-                                                    'max_instances': profileConfig['Scheduler']['MAX_INSTANCES']}
+                                                    'max_instances': commonConfig['Scheduler']['MAX_INSTANCES']}
             scheduler_init(app)
 
         # 加载日志配置
@@ -68,7 +71,9 @@ def create_app():
 
         # 注册蓝图
         from api.router import router
-        router.append(exception_handler.exception)
+        router.append(exception)
+        if commonConfig['JWT']['Authorization']:
+            router.append(jwtAuth)
         register_api(app, router)
 
         return app

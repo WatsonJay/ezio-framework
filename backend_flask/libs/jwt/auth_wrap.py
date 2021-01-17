@@ -5,9 +5,12 @@
 # @Soft    : backend_flask
 
 from functools import wraps
+
+from libs.exception.exception_method import ExceptionMethod
 from libs.jwt.util import identify
 from flask import request
-
+from libs.core import Redis
+from libs.Response.code import ResponseCode
 
 def login_auth(f):
     """
@@ -20,7 +23,8 @@ def login_auth(f):
     def wrapper(*args, **kwargs):
         token = request.headers.get("Authorization", default=None)
         path = request.path
+        if token == Redis.read(path) or token == '':
+            raise ExceptionMethod('this is a test', status_code=ResponseCode.INVALIDTOKEN)
         infoDict = identify(token)
-        
         return f(*args, **kwargs)
     return wrapper

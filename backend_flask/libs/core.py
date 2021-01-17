@@ -32,7 +32,8 @@ class Redis(object):
         port = current_app.config['REDIS_PORT']
         password = current_app.config['REDIS_PASS']
         db = current_app.config['REDIS_DB']
-        redis_config = redis.StrictRedis(host, port, db, password)
+        timeOut = current_app.config['REDIS_TIMEOUT']
+        redis_config = redis.StrictRedis(host= host, port= port, db= db, password= password,socket_connect_timeout= timeOut, socket_timeout=timeOut)
         return redis_config
 
     '''写入键值对'''

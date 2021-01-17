@@ -31,4 +31,13 @@ class ResMsg:
         body["code"] = body.pop("_code")
         body["data"] = body.pop("_data")
         body["msg"] = body.pop("_msg")
+        body["success"] = True
+        return body
+
+    def errorData(self):
+        body = self.__dict__
+        body["code"] = body.pop("_code")
+        body.pop("_data")
+        body["msg"] =  body.pop("_msg")
+        body["success"] = False
         return body

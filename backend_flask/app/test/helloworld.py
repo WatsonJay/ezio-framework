@@ -6,7 +6,7 @@
 from os import abort
 
 from libs.Response.body import ResMsg
-from libs.jwt.wrap import login_auth
+from libs.jwt.auth_wrap import login_auth
 from models.test import *
 from libs.sql_factory import BaseSql
 from app.test import testBp
@@ -28,7 +28,9 @@ def get():
     # TaskScheduler.add_job('test','app.test.helloworld:hello',None,**test)
     #TaskScheduler.remove_job('test')
     # return res.data()
-    raise ExceptionMethod('this is a test',status_code=ResponseCode.BROKENTOKEN)
+    # raise ExceptionMethod('this is a test',status_code=ResponseCode.BROKENTOKEN)
+    res = ResMsg(200)
+    return res.data()
 
 def hello():
     print("----test-----")
