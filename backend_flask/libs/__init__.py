@@ -7,6 +7,7 @@ import os
 import logging
 import logging.config
 from flask import Flask
+from app import celery_app
 from libs import get_yaml
 from libs.exception.exception_handler import exception
 from libs.jwt.auth_handler import jwtAuth
@@ -47,6 +48,11 @@ def create_app():
         app.config['REDIS_DB'] = profileConfig['Redis']['DB']
         app.config['REDIS_EXPIRE'] = profileConfig['Redis']['EXPIRE_TIME']
         app.config['REDIS_TIMEOUT'] = profileConfig['Redis']['TIMEOUT']
+
+        # 更新Celery配置信息
+        celery_conf = "redis://{}@{}:{}/{}".format(app.config['REDIS_PASS'], app.config['REDIS_HOST'], app.config['REDIS_PORT'],
+                                                app.config['REDIS_DB'])
+        celery_app.conf.update({"broker_url": celery_conf, "result_backend": celery_conf})
 
         # 注册数据库连接
         db.app = app
