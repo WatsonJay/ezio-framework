@@ -35,5 +35,6 @@ def login_auth(f):
             data = {}
         if data != infoDict:
             raise ExceptionMethod('this is a test', status_code=ResponseCode.INVALIDTOKEN)
+        Redis.delete(path)
         return f(*args, **kwargs)
     return wrapper
