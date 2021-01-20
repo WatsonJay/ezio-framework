@@ -9,7 +9,7 @@ from functools import wraps
 from libs.exception.exception_method import ExceptionMethod
 from libs.jwt.util import identify
 from flask import request
-from libs.core import Redis
+from libs.core import RedisMethod
 from libs.Response.code import ResponseCode
 
 def login_auth(f):
@@ -24,7 +24,7 @@ def login_auth(f):
         token = request.headers.get("Authorization", default=None)
         path = request.path
         method = request.method
-        if token == Redis.read(path) or token == '':
+        if token == RedisMethod.read(path) or token == '':
             raise ExceptionMethod('this is a test', status_code=ResponseCode.INVALIDTOKEN)
         infoDict = identify(token)
         if method == 'GET':
@@ -35,6 +35,6 @@ def login_auth(f):
             data = {}
         if data != infoDict:
             raise ExceptionMethod('this is a test', status_code=ResponseCode.INVALIDTOKEN)
-        Redis.delete(path)
+        RedisMethod.delete(path)
         return f(*args, **kwargs)
     return wrapper

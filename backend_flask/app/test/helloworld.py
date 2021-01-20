@@ -10,14 +10,14 @@ from libs.jwt.auth_wrap import login_auth
 from models.test import *
 from libs.sql_factory import BaseSql
 from app.test import testBp
+from app.test.celery import add
 from libs.exception.exception_method import ExceptionMethod
 from libs.Response.code import ResponseCode
 
 
 @testBp.route("/helloworld", methods=["GET"])
-@login_auth
+# @login_auth
 def get():
-    test_dict = dict(name='', age=18)
     # sql = BaseSql(Test)
     # sql._updata(1, {'a':1,'b':1,'c':2})
     # sql._delete(4)
@@ -29,7 +29,9 @@ def get():
     #TaskScheduler.remove_job('test')
     # return res.data()
     # raise ExceptionMethod('this is a test',status_code=ResponseCode.BROKENTOKEN)
-    res = ResMsg(200)
+    result = add.delay(1, 2)
+    test_dict = dict(result=result.get(timeout=1))
+    res = ResMsg(200, test_dict)
     return res.data()
 
 def hello():

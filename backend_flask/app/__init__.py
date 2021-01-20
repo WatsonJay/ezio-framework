@@ -3,7 +3,6 @@
 # @Author  : Jaywatson
 # @File    : __init__.py.py
 # @Soft    : backend_flask
-
-from celery import  Celery
+from celery import Celery
 
 celery_app = Celery(__name__)

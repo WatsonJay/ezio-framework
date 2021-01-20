@@ -23,7 +23,7 @@ def getDataSource(USERNAME='', PASSWORD='', HOST='', PORT='', DATABASE='', PARAM
 
 
 '''redis数据库操作'''
-class Redis(object):
+class RedisMethod(object):
     '''获取配置'''
 
     @staticmethod

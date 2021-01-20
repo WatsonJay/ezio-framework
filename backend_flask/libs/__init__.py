@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+# @Time    : 2021/1/20 15:28
+# @Author  : Jaywatson
+# @File    : factory.py
+# @Soft    : backend_flask
+
+# -*- coding: utf-8 -*-
 # @Time    : 2020/7/13 23:53
 # @Author  : Jaywatson
 # @File    : __init__.py
@@ -7,15 +13,14 @@ import os
 import logging
 import logging.config
 from flask import Flask
-from app import celery_app
+from celery import Celery
 from libs import get_yaml
 from libs.exception.exception_handler import exception
-from libs.jwt.auth_handler import jwtAuth
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from libs.core import getDataSource, db, register_api, scheduler_init
 
 
-def create_app():
+def create_app(**kwargs):
     try:
         app = Flask(__name__)
 
@@ -29,7 +34,24 @@ def create_app():
         app.config.update(config)
         app.config['LANG'] = commonConfig['LANG']
 
-        ##添加数据库配置文件到flask App中
+        ##添加redis配置文件到flask App中
+        app.config['REDIS_HOST'] = profileConfig['Redis']['HOST']
+        app.config['REDIS_PORT'] = profileConfig['Redis']['PORT']
+        app.config['REDIS_PASS'] = profileConfig['Redis']['PASSWORD']
+        app.config['REDIS_DB'] = profileConfig['Redis']['DB']
+        app.config['REDIS_EXPIRE'] = profileConfig['Redis']['EXPIRE_TIME']
+        app.config['REDIS_TIMEOUT'] = profileConfig['Redis']['TIMEOUT']
+
+        # initial celery
+        if kwargs.get('celery'):
+            init_celery(kwargs['celery'], app)
+        # 更新Celery配置信息
+        # celery_conf = "redis://{}:{}/{}".format(app.config['REDIS_HOST'], app.config['REDIS_PORT'],
+        #                                         app.config['REDIS_DB'])
+        # celery_app.conf.update({"broker_url": celery_conf, "result_backend": celery_conf})
+
+
+        #添加数据库配置文件到flask App中
         _username = profileConfig['DataSource']['USERNAME']
         _password = profileConfig['DataSource']['PASSWORD']
         _host = profileConfig['DataSource']['HOST']
@@ -40,19 +62,6 @@ def create_app():
         app.config['SQLALCHEMY_DATABASE_URI'] = database_url
         app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = False
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-        ##添加redis配置文件到flask App中
-        app.config['REDIS_HOST'] = profileConfig['Redis']['HOST']
-        app.config['REDIS_PORT'] = profileConfig['Redis']['PORT']
-        app.config['REDIS_PASS'] = profileConfig['Redis']['PASSWORD']
-        app.config['REDIS_DB'] = profileConfig['Redis']['DB']
-        app.config['REDIS_EXPIRE'] = profileConfig['Redis']['EXPIRE_TIME']
-        app.config['REDIS_TIMEOUT'] = profileConfig['Redis']['TIMEOUT']
-
-        # 更新Celery配置信息
-        celery_conf = "redis://{}@{}:{}/{}".format(app.config['REDIS_PASS'], app.config['REDIS_HOST'], app.config['REDIS_PORT'],
-                                                app.config['REDIS_DB'])
-        celery_app.conf.update({"broker_url": celery_conf, "result_backend": celery_conf})
 
         # 注册数据库连接
         db.app = app
@@ -79,6 +88,7 @@ def create_app():
         from api.router import router
         router.append(exception)
         if commonConfig['JWT']['Authorization']:
+            from libs.jwt.auth_handler import jwtAuth
             router.append(jwtAuth)
         register_api(app, router)
 
@@ -87,3 +97,20 @@ def create_app():
     except Exception as e:
         print(e)
         os._exit(1)
+
+def init_celery(celery: Celery, app: Flask) -> None:
+    """
+    initial celery object wraps the task execution in an application context
+    """
+    # 更新Celery配置信息
+    celery_conf = "redis://:{}@{}:{}/{}".format(app.config['REDIS_PASS'], app.config['REDIS_HOST'],
+                                               app.config['REDIS_PORT'],
+                                               app.config['REDIS_DB'])
+    celery.conf.update({"broker_url": celery_conf, "result_backend": celery_conf})
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask

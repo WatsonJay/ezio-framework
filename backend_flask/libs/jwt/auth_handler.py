@@ -6,7 +6,7 @@
 from flask import Blueprint
 from flask import request
 from libs.Response.body import ResMsg
-from libs.core import Redis
+from libs.core import RedisMethod
 from libs.jwt.util import generate_auth_token
 
 jwtAuth = Blueprint('jwtAuth',__name__, url_prefix="/v1/jwt/")
@@ -17,7 +17,7 @@ def get():
     data = request.args.get('param')
     authInfo = dict(path=url, data= data)
     jwtToken = generate_auth_token(authInfo)
-    Redis.write(url, jwtToken, 120)
+    RedisMethod.write(url, jwtToken, 120)
     res = ResMsg(200)
     return res.data()
 
