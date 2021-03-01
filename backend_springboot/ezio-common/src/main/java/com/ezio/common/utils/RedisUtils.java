@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author admin
@@ -68,15 +70,9 @@ public class RedisUtils {
      * 删除缓存
      * @param key 可以传一个值 或多个
      */
-    @SuppressWarnings("unchecked")
     public void del(String... key) {
-        if (key != null && key.length > 0) {
-            if (key.length == 1) {
-                redisTemplate.delete(key[0]);
-            } else {
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
-            }
-        }
+        Set<String> kSet = Stream.of(key).map(k -> k).collect(Collectors.toSet());
+        redisTemplate.delete(kSet);
     }
 
     /**
