@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 env_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(env_path):
-    print(f"load `{env_path}` environment file")
+    # print(f"load `{env_path}` environment file")
     load_dotenv(env_path)
 
 from libs import create_app
