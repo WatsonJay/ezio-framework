@@ -9,10 +9,12 @@ from flask_apscheduler import APScheduler
 from flask_sqlalchemy import SQLAlchemy
 from flask import current_app, Blueprint
 from libs.aes_crypt import decrypt
+from flask_socketio import SocketIO
 import redis
 
 db = SQLAlchemy()
 scheduler = APScheduler()
+socketio = SocketIO()
 
 '''数据库连接词'''
 def getDataSource(USERNAME='', PASSWORD='', HOST='', PORT='', DATABASE='', PARAM=''):

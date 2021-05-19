@@ -17,8 +17,7 @@ from celery import Celery
 from libs import get_yaml
 from libs.exception.exception_handler import exception
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
-from libs.core import getDataSource, db, register_api, scheduler_init
-
+from libs.core import getDataSource, db, register_api, scheduler_init,socketio
 
 def create_app(**kwargs):
     try:
@@ -66,6 +65,8 @@ def create_app(**kwargs):
         # 注册数据库连接
         db.app = app
         db.init_app(app)
+
+        socketio.init_app(app=app, cors_allowed_origins='*')
 
         # 注册定时任务
         if commonConfig['Scheduler']['ENABLE']:

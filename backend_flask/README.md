@@ -52,3 +52,9 @@ class AuthMethodView(MethodView):
     def delete(self):
         return "测试自定义MethodView"
 ```
+
+##启动方法
+```
+1.flask run (启动应用)
+2.celery -A manage:celery_app worker --pool=solo -l info（启动celery）
+```
