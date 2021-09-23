@@ -44,11 +44,6 @@ def create_app(**kwargs):
         # initial celery
         if kwargs.get('celery'):
             init_celery(kwargs['celery'], app)
-        # 更新Celery配置信息
-        # celery_conf = "redis://{}:{}/{}".format(app.config['REDIS_HOST'], app.config['REDIS_PORT'],
-        #                                         app.config['REDIS_DB'])
-        # celery_app.conf.update({"broker_url": celery_conf, "result_backend": celery_conf})
-
 
         #添加数据库配置文件到flask App中
         _username = profileConfig['DataSource']['USERNAME']
