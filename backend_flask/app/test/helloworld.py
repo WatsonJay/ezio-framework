@@ -3,8 +3,12 @@
 # @Author  : Jaywatson
 # @File    : helloworld.py
 # @Soft    : backend_flaskb
+import random
 from os import abort
 
+from flask_socketio import send
+
+from libs import socketio
 from libs.Response.body import ResMsg
 from libs.jwt.auth_wrap import login_auth
 from models.test import *
@@ -36,3 +40,16 @@ def get():
 
 def hello():
     print("----test-----")
+
+# @socketio.on('message')
+# def handle_message(data):
+#     print('received message: ' + data)
+
+@socketio.on('test  ', namespace='/test_conn')
+def handle_message(message):
+    socketio.emit('my response', {'data': 'Connected'}, namespace='/test_conn')
+    while True:
+        socketio.sleep(5)
+        t = random.randint(1, 100)
+        socketio.emit('server_response',
+                      {'data': t}, namespace='/test_conn')

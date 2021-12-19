@@ -14,7 +14,7 @@ import redis
 
 db = SQLAlchemy()
 scheduler = APScheduler()
-socketio = SocketIO()
+socketio = SocketIO(logger=True, engineio_logger=True)
 
 '''数据库连接词'''
 def getDataSource(USERNAME='', PASSWORD='', HOST='', PORT='', DATABASE='', PARAM=''):
