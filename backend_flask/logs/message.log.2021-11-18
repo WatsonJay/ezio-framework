@@ -1,0 +1,28 @@
+[2021-11-18 10:08:18] WARNING 246600:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 10:20:44] ERROR 246600:[_internal.py:225] - 192.168.10.89 - - [18/Nov/2021 10:20:44] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03í¡\x02\'Q%É\rÈ\\³^\tIi&ÌC@ÞÇÀÑW\xa0É¨\x01\x91\x8a@\r Gèê\x11b\x87P]%\x814\x92\x9bäMs?\x82Â\xa0g\'øOï¸`aò|¼É\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+[2021-11-18 10:32:32] WARNING 297264:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 10:33:20] WARNING 298064:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 10:33:35] ERROR 298064:[_internal.py:225] - 192.168.10.89 - - [18/Nov/2021 10:33:35] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03¯\x11¡nîY¥ÇóËñÌ\x16¯bìJXµ<NÊ,\r\x8dÒ\x9e·\x07m¶Ú \t\x1a»)\x17p\x15ÜÏ\x9a\x8bWm\x1c~j´\x0cÁýK\x15ANÛ\xadK\x02\tv,\x06\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+[2021-11-18 10:41:38] WARNING 331996:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:05:07] WARNING 291464:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:05:56] WARNING 11612:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:09:34] WARNING 39264:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:10:47] WARNING 76336:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:13:48] WARNING 14748:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:17:00] WARNING 78360:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 11:17:43] WARNING 97284:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 14:36:14] WARNING 161156:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2021-11-18 19:28:10] WARNING 213776:[_internal.py:225] -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.

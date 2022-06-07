@@ -7,8 +7,8 @@ DataSource:
   PARAM: charset=utf8  #服务器连接参数
 
 Redis:
-  HOST: 192.168.123.14 #redis地址
-  PORT: 6379 #端口
+  HOST: 172.96.229.205 #redis地址
+  PORT: 16379 #端口
   PASSWORD: 123456 #密码
   DB: 8 #数据库
   EXPIRE_TIME: 60 # 过期时间

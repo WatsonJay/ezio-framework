@@ -45,11 +45,11 @@ def hello():
 # def handle_message(data):
 #     print('received message: ' + data)
 
-@socketio.on('test  ', namespace='/test_conn')
-def handle_message(message):
-    socketio.emit('my response', {'data': 'Connected'}, namespace='/test_conn')
+@socketio.on('test', namespace='/testconn')
+def handle_message():
+    socketio.emit('my response', {'data': 'Connected'}, namespace='/testconn')
     while True:
         socketio.sleep(5)
         t = random.randint(1, 100)
         socketio.emit('server_response',
-                      {'data': t}, namespace='/test_conn')
+                      {'data': t}, namespace='/testconn')
