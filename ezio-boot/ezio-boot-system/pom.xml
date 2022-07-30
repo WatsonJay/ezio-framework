@@ -5,7 +5,7 @@
     <parent>
         <artifactId>ezio-boot-parent</artifactId>
         <groupId>org.ezioframework.boot</groupId>
-        <version>3.2.0</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,25 +14,8 @@
     <dependencies>
         <dependency>
             <groupId>org.ezioframework.boot</groupId>
-            <artifactId>ezio-boot-core</artifactId>
+            <artifactId>ezio-boot-base-core</artifactId>
         </dependency>
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>SpringCloud</id>
-            <!-- 引入微服务启动 Starter依赖 -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.jeecgframework.boot</groupId>
-                    <artifactId>jeecg-boot-starter-cloud</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.jeecgframework.boot</groupId>
-                    <artifactId>jeecg-boot-starter-job</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 
 </project>

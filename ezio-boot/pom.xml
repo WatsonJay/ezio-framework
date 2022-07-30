@@ -5,6 +5,7 @@
     <groupId>org.ezioframework.boot</groupId>
     <artifactId>ezio-boot-parent</artifactId>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
     <name>EZIO BOOT ${project.version}</name>
     <description>Demo project for Spring Boot</description>
 
